@@ -20,7 +20,6 @@ export default function RootLayout({
                 <main className="relative z-10 min-h-screen pb-24">
                     {children}
                 </main>
-
                 <Navbar />
             </body>
         </html>
