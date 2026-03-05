@@ -70,8 +70,8 @@ export default function LandingPage() {
             </p>
 
             {/* Карточки */}
-            <div className="grid md:grid-cols-1 gap-4 items-stretch">
-                <GlassCard className="bg-secondary/15 p-6 h-full">
+            <div className="grid md:grid-cols-3 gap-4 items-stretch">
+                <GlassCard className="bg-secondary/30 p-6 h-full">
                     <div className="flex items-start gap-4">
                         <Calendar className="w-8 h-8 text-blue-400 flex-shrink-0" />
 
@@ -86,7 +86,7 @@ export default function LandingPage() {
                     </div>
                 </GlassCard>
 
-                <GlassCard className="bg-secondary/15 p-6 h-full">
+                <GlassCard className="bg-secondary/30 p-6 h-full">
                     <div className="flex items-start gap-4">
                         <Users className="w-8 h-8 text-pink-400 flex-shrink-0" />
 
@@ -102,7 +102,7 @@ export default function LandingPage() {
                     </div>
                 </GlassCard>
 
-                <GlassCard className="bg-secondary/15 p-6 h-full">
+                <GlassCard className="bg-secondary/30 p-6 h-full">
                     <div className="flex items-start gap-4">
                         <BookOpen className="w-8 h-8 text-purple-400 flex-shrink-0" />
 

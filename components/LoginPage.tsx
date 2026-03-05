@@ -68,15 +68,6 @@ export default function LoginPage() {
                     </LiquidButton>
                 </div>
             </form>
-
-            <div className="mt-6 text-center">
-                <Link
-                    href="/"
-                    className="text-sm text-gray/40 hover:text-black transition-colors"
-                >
-                    Вернуться на начальную страницу
-                </Link>
-            </div>
         </div>
     );
 }
