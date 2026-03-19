@@ -21,49 +21,56 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="flex flex-col justify-center">
+        <div className="h-full flex flex-col justify-center">
             <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold mb-2">Добро пожаловать!</h2>
-                <p>Введите свои данные</p>
+                <h2 className="text-text text-3xl font-bold mb-2">
+                    Добро пожаловать!
+                </h2>
+                <p className="text-text/80">Введите свои данные</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
-                    <label className="text-xs font-semibold text-black/70 uppercase tracking-wider ml-2">
+                    <label className="text-xs font-semibold text-text/70 uppercase tracking-wider ml-2">
                         Логин
                     </label>
                     <div className="relative group">
                         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <User className="h-5 w-5 text-black/50 group-focus-within:text-black transition-colors" />
+                            <User className="h-5 w-5 text-secondary/60 group-focus-within:text-secondary transition-colors" />
                         </div>
                         <input
                             type="text"
                             required
-                            className="block w-full pl-12 pr-4 py-4 bg-black/10 border border-black/10 rounded-2xl text-gray placeholder-black/30 focus:outline-none focus:ring-2 focus:ring-white/30 focus:bg-black/20 transition-all "
+                            className="block w-full pl-12 pr-4 py-4 bg-black/10 border border-black/10 rounded-2xl text-text/50 group-focus-within:text-secondary placeholder-black/30 focus:outline-none focus:ring-1 focus:ring-accent/70 focus:bg-text/15 transition-all"
                             placeholder="логин229"
                         />
                     </div>
                 </div>
 
                 <div className="space-y-2">
-                    <label className="text-xs font-semibold text-black/70 uppercase tracking-wider ml-2">
+                    <label className="text-xs font-semibold text-text/70 uppercase tracking-wider ml-2">
                         Пароль
                     </label>
                     <div className="relative group">
                         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <Lock className="h-5 w-5 text-black/50 group-focus-within:text-black transition-colors" />
+                            <Lock className="h-5 w-5 text-secondary/50 group-focus-within:text-secondary transition-colors" />
                         </div>
                         <input
                             type="password"
                             required
-                            className="block w-full pl-12 pr-4 py-4 bg-black/10 border border-black/10 rounded-2xl text-gray placeholder-black/30 focus:outline-none focus:ring-2 focus:ring-white/30 focus:bg-black/20 transition-all"
+                            className="block w-full pl-12 pr-4 py-4 bg-black/10 border border-black/10 rounded-2xl text-text/50 group-focus-within:text-secondary placeholder-black/30 focus:outline-none focus:ring-2 focus:ring-accent/70 focus:bg-text/15 transition-all"
                             placeholder="••••••••"
                         />
                     </div>
                 </div>
 
                 <div className="pt-4">
-                    <LiquidButton type="submit" fullWidth disabled={loading}>
+                    <LiquidButton
+                        className="shadow-lg"
+                        type="submit"
+                        fullWidth
+                        disabled={loading}
+                    >
                         {loading ? "Аутентификация..." : "Войти"}
                     </LiquidButton>
                 </div>

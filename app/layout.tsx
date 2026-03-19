@@ -17,9 +17,8 @@ export default function RootLayout({
     return (
         <html lang="ru">
             <body className="font-sans antialiased min-h-screen relative">
-                <main className="relative z-10 min-h-screen pb-24">
-                    {children}
-                </main>
+                {/*<Background />*/}
+                <main className="relative z-10 min-h-screen">{children}</main>
                 <Navbar />
             </body>
         </html>

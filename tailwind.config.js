@@ -21,11 +21,11 @@ const config = {
                     text: "rgba(0, 0, 0, 0.8)",
                     textMuted: "rgba(0, 0, 0, 0.6)",
                 },
-                text: "#000000",
-                background: "#ECF0F5",
+                text: "#050f1a",
+                background: "#ebeff4",
                 primary: "#3E5062",
                 secondary: "#273340",
-                accent: "#1a242e",
+                accent: "#297DD6",
             },
 
             backgroundImage: {
