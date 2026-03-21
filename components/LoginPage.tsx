@@ -28,8 +28,8 @@ export default function LoginPage() {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
-                    <label className="text-body-sm font-medium text-primary/85 uppercase tracking-wider ml-2">
+                <div className="space-y-1">
+                    <label className="text-body-sm font-medium text-primary/65 uppercase tracking-wider ml-2">
                         Логин
                     </label>
                     <div className="relative group">
@@ -45,8 +45,8 @@ export default function LoginPage() {
                     </div>
                 </div>
 
-                <div className="space-y-2">
-                    <label className="text-body-sm font-medium text-primary/85 uppercase tracking-wider ml-2">
+                <div className="space-y-1">
+                    <label className="text-body-sm font-medium text-primary/65 uppercase tracking-wider ml-2">
                         Пароль
                     </label>
                     <div className="relative group">
