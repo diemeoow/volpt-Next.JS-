@@ -9,8 +9,38 @@ const config = {
     ],
     theme: {
         extend: {
+            fontSize: {
+                h1: ["40px", { lineHeight: "48px", fontWeight: "700" }],
+                h2: ["32px", { lineHeight: "40px", fontWeight: "700" }],
+                h3: ["30px", { lineHeight: "36px", fontWeight: "700" }],
+                h4: ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                h5: ["20px", { lineHeight: "28px", fontWeight: "600" }],
+                h6: ["16px", { lineHeight: "24px", fontWeight: "600" }],
+
+                "body-lg": ["18px", { lineHeight: "28px" }],
+                body: ["16px", { lineHeight: "24px" }],
+                "body-sm": ["14px", { lineHeight: "20px" }],
+                caption: ["12px", { lineHeight: "16px" }],
+            },
             fontFamily: {
-                sans: ["Roboto", "sans-serif"],
+                font: [
+                    "Inter",
+                    "Noto Sans Arabic",
+                    "Roobert",
+                    "Helvetica Neue",
+                    "Helvetica",
+                    "Arial",
+                    "sans-serif",
+                ],
+                display: [
+                    "Roobert",
+                    "Tajawal",
+                    "Inter",
+                    "Helvetica Neue",
+                    "Helvetica",
+                    "Arial",
+                    "sans-serif",
+                ],
             },
             colors: {
                 glass: {

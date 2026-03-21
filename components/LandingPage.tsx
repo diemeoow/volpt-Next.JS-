@@ -84,17 +84,17 @@ export default function LandingPage() {
                     />
                 </svg>
                 <div className="flex-row">
-                    <p className="text-primary/80 tracking-tight text-xs ">
+                    <p className="text-primary text-caption tracking-tight ">
                         Государственное бюджетное профессиональное
                         образовательное учреждение «Волжский политехнический
                         техникум»
                     </p>
-                    <h1 className="text-text text-3xl md:text-2xl font-bold tracking-tight drop-shadow-md">
+                    <h1 className="text-text text-h2 md:text-2xl tracking-tight drop-shadow-md">
                         Электронное образование
                     </h1>
                 </div>
             </div>
-            <p className="text-text">
+            <p className="text-text text-body">
                 Цифровая платформа для работы с учебными группами, дисциплинами
                 и расписанием.
             </p>
@@ -114,16 +114,16 @@ export default function LandingPage() {
                                 className="w-full flex-shrink-0 h-full"
                             >
                                 <div className="px-8 pb-1 h-full box-border">
-                                    <GlassCard className="bg-secondary/30 p-6 h-full">
+                                    <GlassCard className="p-6 h-full ">
                                         <div className="flex flex-col items-stretch gap-1 h-full">
                                             <div className="flex flex-row gap-3 flex-shrink-0 self-start">
                                                 {/*Заголовок*/}
                                                 {slide.icon}
-                                                <div className="flex flex-col  h-full w-full">
-                                                    <h3 className="font-semibold text-text text-lg leading-tight">
+                                                <div className="flex flex-col h-full w-full">
+                                                    <h3 className=" text-text text-h4 leading-tight">
                                                         {slide.title}
                                                     </h3>
-                                                    <p className="text-sm text-text leading-snug">
+                                                    <p className="text-body-sm text-text leading-snug">
                                                         {slide.desc}
                                                     </p>
                                                 </div>
@@ -170,7 +170,7 @@ export default function LandingPage() {
                 </div>
             </div>
 
-            <p className="text-center text-xs text-text/30 uppercase tracking-widest">
+            <p className="text-center text-caption text-text/30 uppercase tracking-widest">
                 Версия v1.0
             </p>
         </div>

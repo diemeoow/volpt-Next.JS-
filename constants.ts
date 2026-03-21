@@ -233,14 +233,16 @@ export const MOCK_SCHEDULE_TEMPLATE = [
         lessons: [
             {
                 id: "l1",
-                subject: "Web Development",
+                subject:
+                    " УП.01.01 Учебная практика по разработке модулей программного обеспечения для компьютерных систем",
                 group: "IS-301",
                 pairNumber: 1,
                 room: "Lab 101",
             },
             {
                 id: "l2",
-                subject: "Database Design",
+                subject:
+                    "МДК 02.02 Инструментальные средства разработки программного обеспечения ",
                 group: "IS-302",
                 pairNumber: 2,
                 room: "Lab 204",
@@ -269,6 +271,20 @@ export const MOCK_SCHEDULE_TEMPLATE = [
                 subject: "Algorithms",
                 group: "CS-202",
                 pairNumber: 4,
+                room: "Lec 305",
+            },
+            {
+                id: "l6",
+                subject: "Algorithms",
+                group: "CS-202",
+                pairNumber: 5,
+                room: "Lec 305",
+            },
+            {
+                id: "l7",
+                subject: "Algorithms",
+                group: "CS-202",
+                pairNumber: 6,
                 room: "Lec 305",
             },
         ],

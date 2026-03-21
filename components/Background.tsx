@@ -28,7 +28,7 @@ const fragmentShaderSource = `
 
       // Theme Adaptation: Dark Mode
       // Background: Dark Slate (#0f172a)
-      vec3 bgColor = vec3(1.0, 1.0, 1.0);
+      vec3 bgColor = vec3(0.922, 0.937, 0.957);
 
       // Point Color: Soft Blue-Grey
       vec3 pointColor = vec3(0.24, 0.31, 0.38);

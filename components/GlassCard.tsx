@@ -16,21 +16,21 @@ const GlassCard: React.FC<GlassCardProps> = ({
     // Config for different glass depths
     const intensityStyles = {
         low: {
-            bg: "bg-white/[0.05]",
+            bg: "bg-primary/[0.05]",
             blur: "backdrop-blur-md",
-            border: "border-white/[0.1]",
+            border: "border-primary/[0.1]",
             shadow: "shadow-sm",
         },
         medium: {
-            bg: "bg-white/[0.08]",
+            bg: "bg-primary/[0.08]",
             blur: "backdrop-blur-xl",
-            border: "border-white/[0.15]",
+            border: "border-primary/[0.15]",
             shadow: "shadow-md",
         },
         high: {
-            bg: "bg-white/[0.12]",
+            bg: "bg-primary/[0.12]",
             blur: "backdrop-blur-2xl",
-            border: "border-white/[0.2]",
+            border: "border-primary/[0.2]",
             shadow: "shadow-lg",
         },
     };

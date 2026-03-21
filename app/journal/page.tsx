@@ -59,14 +59,14 @@ function JournalContent() {
         <div className="p-4 md:p-6 mx-auto w-full">
             {/* 1. Заголовок */}
             <div className="flex items-center self-start md:self-auto mb-8 pl-2 gap-4">
-                <h1 className="text-3xl font-bold tracking-tight">Журнал</h1>
+                <h1 className="text-text text-h2 drop-shadow-sm">Журнал</h1>
             </div>
 
             {/* 2. Область фильтров */}
             <div className="flex flex-col md:flex-row justify-between items-center">
                 <div className="flex flex-col sm:flex-row gap-4 mb-6">
                     <div className="flex flex-col gap-1 w-full sm:w-auto">
-                        <label className="text-xs font-bold text-text/50 uppercase tracking-wider ml-1">
+                        <label className="text-caption font-bold text-text/50 uppercase tracking-wider ml-1">
                             Группа
                         </label>
                         <div className="relative">
@@ -97,7 +97,7 @@ function JournalContent() {
                     </div>
 
                     <div className="flex flex-col gap-1 w-full sm:w-auto">
-                        <label className="text-xs font-bold text-text/50 uppercase tracking-wider ml-1">
+                        <label className="text-caption font-bold text-text/50 uppercase tracking-wider ml-1">
                             Предмет
                         </label>
                         <div className="relative">
@@ -251,12 +251,12 @@ function JournalContent() {
                             className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-text/80 hover:bg-white/10 disabled:opacity-30 disabled:hover:bg-transparent transition-all"
                         >
                             <ChevronLeft className="w-5 h-5" />
-                            <span className="text-sm font-medium  hidden sm:inline">
+                            <span className="text-body-sm font-medium  hidden sm:inline">
                                 Назад
                             </span>
                         </button>
 
-                        <span className="text-sm font-bold text-text/80 tracking-wide bg-white/20 px-4 py-1.5 rounded-full border border-white/5">
+                        <span className="text-body-sm font-bold text-text/80 tracking-wide bg-white/20 px-4 py-1.5 rounded-full border border-white/5">
                             {page + 1}
                         </span>
 
@@ -265,7 +265,7 @@ function JournalContent() {
                             disabled={page === totalPages - 1}
                             className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-text/80 hover:bg-white/10 disabled:opacity-30 disabled:hover:bg-transparent transition-all"
                         >
-                            <span className="text-sm font-medium hidden sm:inline">
+                            <span className="text-body-sm font-medium hidden sm:inline">
                                 Вперед
                             </span>
                             <ChevronRight className="w-5 h-5" />

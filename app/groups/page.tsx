@@ -53,7 +53,7 @@ export default function GroupsPage() {
                     return (
                         <GlassCard
                             key={group.id}
-                            className={`transition-all duration-500 overflow-visible ${isExpanded ? "bg-white/15" : "bg-white/10"}`}
+                            className={`transition-all duration-500 overflow-visible`}
                             intensity="medium"
                         >
                             <button
