@@ -224,6 +224,18 @@ export const MOCK_STUDENTS: Student[] = [
         grades: Array(36).fill(null),
         attendance: Array(36).fill(true),
     },
+    {
+        id: "9",
+        name: "Sokolov H.",
+        grades: Array(36).fill(null),
+        attendance: Array(36).fill(true),
+    },
+    {
+        id: "10",
+        name: "Sokolov H.",
+        grades: Array(36).fill(null),
+        attendance: Array(36).fill(true),
+    },
 ];
 
 // Template for a week's schedule

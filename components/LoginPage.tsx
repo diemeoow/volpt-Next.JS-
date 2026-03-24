@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import LiquidButton from "@/components/LiquidButton";
 import { Lock, User } from "lucide-react";
 

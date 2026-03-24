@@ -63,7 +63,7 @@ const Navbar: React.FC = () => {
 
                 <button
                     onClick={handleLogout}
-                    className="flex items-center justify-center w-12 h-12 rounded-full text-red-400/85 hover:text-red-50 hover:bg-red-300/85 transition-all active:scale-95"
+                    className="flex items-center justify-center w-12 h-12 rounded-full text-red-400/85 hover:text-red-50 hover:bg-red-400/85 transition-all active:scale-95"
                     title="Выйти"
                 >
                     <LogOut className="w-5 h-5" />
