@@ -29,14 +29,18 @@ export default function GroupsPage() {
     return (
         <div className="p-4 md:p-6 mx-auto w-full">
             <div className="mb-8 pl-2 flex justify-between items-end">
-                <div>
-                    <h2 className="text-3xl font-bold text-text">Мои группы</h2>
-                    <p className="text-text/85">Список групп и предметов</p>
+                <div className="pl-2">
+                    <h2 className="text-text text-h2 drop-shadow-sm">
+                        Мои группы
+                    </h2>
+                    <p className="text-text/85 text-body">
+                        Список групп и предметов
+                    </p>
                 </div>
 
                 <button
                     onClick={toggleSort}
-                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-text text-sm font-medium transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 hover:bg-secondary/10 border hover:border-accent/55 hover:text-accent text-text text-body-sm font-medium transition-colors"
                 >
                     {sortBy === "NAME" ? (
                         <ArrowDownAZ className="w-4 h-4" />
@@ -62,15 +66,15 @@ export default function GroupsPage() {
                             >
                                 <div className="flex items-center gap-4">
                                     <div
-                                        className={`p-3 rounded-2xl transition-all duration-300 ${isExpanded ? "bg-secondary shadow-[0_0_20px_rgba(41,125,214,0.5)]" : "bg-primary"}`}
+                                        className={`p-3 rounded-2xl transition-all duration-300 ${isExpanded ? "bg-secondary/50 shadow-[0_0_20px_rgba(41,125,214,0.5)]" : "bg-primary/50"}`}
                                     >
-                                        <Users className="w-6 h-6 text-accent" />
+                                        <Users className="w-6 h-6 text-text" />
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-bold text-text">
+                                        <h3 className="text-h4 text-text">
                                             {group.name}
                                         </h3>
-                                        <p className="text-sm text-text/50">
+                                        <p className="text-body-sm text-text/50">
                                             {group.subjects.length} предмета
                                         </p>
                                     </div>
@@ -86,17 +90,17 @@ export default function GroupsPage() {
                                 className={`transition-[max-height,opacity] duration-500 ease-in-out overflow-hidden ${isExpanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
                             >
                                 <div className="p-6 pt-0 border-t border-white/10">
-                                    <p className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3 mt-4">
+                                    <p className="text-caption text-text/60 uppercase tracking-wider pl-1.5 mb-3 mt-4">
                                         Список предметов
                                     </p>
                                     <div className="grid gap-3">
                                         {group.subjects.map((sub, idx) => (
                                             <div
                                                 key={idx}
-                                                className="flex items-center gap-3 p-3 rounded-xl bg-black/20 border border-white/5"
+                                                className="flex items-center gap-2 p-3 rounded-xl bg-primary/10 border border-primary/5"
                                             >
-                                                <Book className="w-4 h-4 text-text/60" />
-                                                <span className="text-text/90 font-medium">
+                                                <Book className="w-4 h-4 text-secondary/85" />
+                                                <span className="text-text text-h6">
                                                     {sub}
                                                 </span>
                                             </div>

@@ -1,4 +1,4 @@
-import { GroupSummary, ScheduleDay, Student } from "./types";
+import { GroupSummary, Student } from "./types";
 
 // Time slots definition
 export const TIME_SLOTS = [
