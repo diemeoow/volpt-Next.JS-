@@ -1,8 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import Link from "next/link";
 import GlassCard from "@/components/GlassCard";
-import LiquidButton from "@/components/LiquidButton";
 import {
     ChevronLeft,
     ChevronRight,
@@ -89,7 +87,7 @@ export default function LandingPage() {
                         образовательное учреждение «Волжский политехнический
                         техникум»
                     </p>
-                    <h1 className="text-text text-h2 md:text-2xl tracking-tight drop-shadow-md">
+                    <h1 className="text-text text-h2 tracking-tight drop-shadow-md">
                         Электронное образование
                     </h1>
                 </div>

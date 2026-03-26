@@ -18,8 +18,8 @@ export default function SchedulePage() {
     };
 
     return (
-        <div className="p-4 md:p-6 mx-auto w-full mb-24">
-            <div className="mb-4 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="p-4 md:p-6 w-full mb-24">
+            <div className="mb-4 flex   items-center  justify-between  gap-4">
                 <div className="pl-2">
                     <h2 className="text-text text-h2 drop-shadow-sm">
                         Расписание
