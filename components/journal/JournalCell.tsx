@@ -1,6 +1,7 @@
 // components/journal/JournalCell.tsx
 "use client";
 
+import { memo } from "react";
 import { JournalMode } from "@/types/types";
 import {
     Grade,
@@ -17,7 +18,13 @@ interface Props {
     onClick: () => void;
 }
 
-export function JournalCell({ mode, grade, status, isToday, onClick }: Props) {
+function JournalCellComponent({
+    mode,
+    grade,
+    status,
+    isToday,
+    onClick,
+}: Props) {
     const base =
         "inline-flex items-center justify-center w-8 h-8 rounded-lg font-bold border transition-all duration-150 hover:scale-110 active:scale-95";
     const empty =
@@ -47,3 +54,5 @@ export function JournalCell({ mode, grade, status, isToday, onClick }: Props) {
         </td>
     );
 }
+
+export const JournalCell = memo(JournalCellComponent);

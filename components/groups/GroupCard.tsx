@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import Link from "next/link";
 import GlassCard from "@/components/GlassCard";
 import { Users, Book } from "lucide-react";
@@ -9,7 +10,7 @@ interface Props {
     group: GroupSummary;
 }
 
-export function GroupCard({ group }: Props) {
+function GroupCardComponent({ group }: Props) {
     return (
         <GlassCard
             className="transition-all overflow-visible"
@@ -47,3 +48,5 @@ export function GroupCard({ group }: Props) {
         </GlassCard>
     );
 }
+
+export const GroupCard = memo(GroupCardComponent);
