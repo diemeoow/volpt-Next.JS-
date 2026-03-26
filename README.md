@@ -1,54 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Volpt — учебный интерфейс преподавателя (Next.js)
 
-## Getting Started
+Веб-приложение для преподавателя с тремя основными рабочими зонами:
+- **Расписание** (`/schedule`)
+- **Группы** (`/groups`)
+- **Журнал** (`/journal`)
 
-First, run the development server:
+Главная страница (`/`) — это split-screen с промо-блоком и формой входа.
+
+Удалены неиспользуемые шаблонные ассеты `public/*.svg` из `create-next-app`, чтобы оставить только реально используемые файлы проекта.
+
+## Что делает приложение
+
+Приложение помогает быстро переключаться между рабочими задачами преподавателя:
+1. Посмотреть недельное расписание.
+2. Открыть карточки групп и предметов.
+3. Перейти в журнал по выбранной группе/предмету.
+4. Поставить оценки или отметить посещаемость по дням.
+
+## Как устроена навигация
+
+- **`/schedule`**: отображает шаблон недели, позволяет листать недели и перейти в журнал по конкретному занятию (группа + предмет).
+- **`/groups`**: показывает список групп, поддерживает сортировку (по названию / по количеству предметов).
+- **`/journal`**: показывает табличный журнал, где можно переключать режимы:
+  - `ATTENDANCE` — посещаемость
+  - `GRADES` — оценки
+
+Выбор группы и предмета в журнале синхронизируется с query-параметрами URL.
+
+## Источники данных
+
+Данные загружаются через сервис `lib/services/educationData.ts`:
+- `loadScheduleTemplate()`
+- `loadGroups()`
+- `loadStudents()`
+
+Это позволяет держать UI-компоненты проще и централизовать доступ к данным.
+
+## Обработка ошибок
+
+В проекте есть базовый runtime-monitoring:
+- `RuntimeErrorBoundary` в `app/layout.tsx`
+- отправка ошибок на `POST /api/monitoring/client-error`
+
+При проблемах с загрузкой данных в интерфейсе отображаются состояния через `PageState` (ошибка/пусто).
+
+## Запуск локально
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Открыть: [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Quality checks
-
-Run local quality gates before pushing:
+## Проверки качества
 
 ```bash
 npm run check
 ```
 
-This command runs linting, TypeScript type checks, and production build validation.
+Команда запускает линтер, проверку типов и production build.
 
-Performance audits are also automated in GitHub Actions via Lighthouse for:
-- `/`
-- `/journal`
-- `/groups`
-- `/schedule`
-
-Release readiness checklist is available in `RELEASE_CHECKLIST.md`.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+В CI также настроен Lighthouse (`.github/workflows/perf.yml`).
