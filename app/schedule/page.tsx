@@ -2,19 +2,21 @@
 
 import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
-import { MOCK_SCHEDULE_TEMPLATE } from "@/constants";
 import { useWeekDates } from "@/hooks/useWeekDates";
 import { WeekNavigator } from "@/components/schedule/WeekNavigator";
 import { DayCard } from "@/components/schedule/DayCard";
+import { buildJournalHref } from "@/lib/journalFilters";
+import { getScheduleTemplate } from "@/lib/services/educationData";
+import { PageState } from "@/components/shared/PageState";
 
 export default function SchedulePage() {
     const [weekOffset, setWeekOffset] = useState(0);
     const router = useRouter();
     const { dates, isToday, formatDate, weekRange } = useWeekDates(weekOffset);
+    const scheduleTemplate = getScheduleTemplate();
 
     const handleLessonSelect = useCallback((subject: string, group: string) => {
-        const params = new URLSearchParams({ subject, group });
-        router.push(`/journal?${params.toString()}`);
+        router.push(buildJournalHref({ group, subject }));
     }, [router]);
 
     return (
@@ -35,18 +37,26 @@ export default function SchedulePage() {
                 />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {MOCK_SCHEDULE_TEMPLATE.map((dayTemplate, index) => (
-                    <DayCard
-                        key={dayTemplate.dayName}
-                        dayTemplate={dayTemplate}
-                        date={dates[index]}
-                        isActive={isToday(dates[index])}
-                        formatDate={formatDate}
-                        onLessonSelect={handleLessonSelect}
-                    />
-                ))}
-            </div>
+            {scheduleTemplate.length === 0 ? (
+                <PageState
+                    title="Расписание недоступно"
+                    description="Не удалось загрузить занятия. Попробуйте обновить страницу позже."
+                    variant="error"
+                />
+            ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {scheduleTemplate.map((dayTemplate, index) => (
+                        <DayCard
+                            key={dayTemplate.dayName}
+                            dayTemplate={dayTemplate}
+                            date={dates[index]}
+                            isActive={isToday(dates[index])}
+                            formatDate={formatDate}
+                            onLessonSelect={handleLessonSelect}
+                        />
+                    ))}
+                </div>
+            )}
         </div>
     );
 }

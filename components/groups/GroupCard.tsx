@@ -5,6 +5,7 @@ import Link from "next/link";
 import GlassCard from "@/components/GlassCard";
 import { Users, Book } from "lucide-react";
 import { GroupSummary } from "@/types/types";
+import { buildJournalHref } from "@/lib/journalFilters";
 
 interface Props {
     group: GroupSummary;
@@ -36,7 +37,10 @@ function GroupCardComponent({ group }: Props) {
                     {group.subjects.map((sub) => (
                         <Link
                             key={sub}
-                            href={`/journal?${new URLSearchParams({ group: group.name, subject: sub }).toString()}`}
+                            href={buildJournalHref({
+                                group: group.name,
+                                subject: sub,
+                            })}
                             className="flex items-center gap-2 p-3 rounded-xl bg-primary/10 border border-primary/5 hover:bg-accent/15 hover:border-accent/30 transition-colors"
                         >
                             <Book className="w-4 h-4 text-secondary/85" />

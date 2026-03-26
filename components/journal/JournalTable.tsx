@@ -19,7 +19,7 @@ interface Student {
 
 interface Props {
     mode: JournalMode;
-    students: Student[];
+    students: ReadonlyArray<Student>;
     currentDays: JournalDay[];
     startDayIndex: number;
     grades: GradesState;
