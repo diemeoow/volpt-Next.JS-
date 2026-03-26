@@ -13,9 +13,11 @@ export const ATTENDANCE_CYCLE: AttendanceStatus[] = [
 ];
 
 export function nextStatus(current: AttendanceStatus): AttendanceStatus {
-    return ATTENDANCE_CYCLE[
-        (ATTENDANCE_CYCLE.indexOf(current) + 1) % ATTENDANCE_CYCLE.length
-    ];
+    return (
+        ATTENDANCE_CYCLE[
+            (ATTENDANCE_CYCLE.indexOf(current) + 1) % ATTENDANCE_CYCLE.length
+        ] ?? null
+    );
 }
 
 export function nextGrade(g: Grade): Grade {

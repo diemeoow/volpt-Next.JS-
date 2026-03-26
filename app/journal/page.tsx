@@ -20,7 +20,7 @@ import {
     normalizeJournalFilters,
     buildJournalHref,
 } from "@/lib/journalFilters";
-import { getStudents } from "@/lib/services/educationData";
+import { loadStudents } from "@/lib/services/educationData";
 import { PageState } from "@/components/shared/PageState";
 
 const ITEMS_PER_PAGE = 18;
@@ -43,7 +43,8 @@ function JournalContent() {
     );
     const [grades, setGrades] = useState<GradesState>({});
     const [attendance, setAttendance] = useState<AttendanceState>({});
-    const students = getStudents();
+    const studentsResult = useMemo(() => loadStudents(), []);
+    const students = studentsResult.data ?? [];
 
     const totalPages = Math.ceil(JOURNAL_DAYS.length / ITEMS_PER_PAGE);
     const startDayIndex = page * ITEMS_PER_PAGE;
@@ -119,7 +120,15 @@ function JournalContent() {
                 className="flex-1 overflow-hidden flex flex-col min-h-0  mb-24"
                 intensity="medium"
             >
-                {students.length === 0 ? (
+                {studentsResult.error ? (
+                    <div className="p-4">
+                        <PageState
+                            title="Ошибка загрузки журнала"
+                            description={studentsResult.error.message}
+                            variant="error"
+                        />
+                    </div>
+                ) : students.length === 0 ? (
                     <div className="p-4">
                         <PageState
                             title="Журнал пока пуст"

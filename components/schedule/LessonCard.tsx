@@ -11,7 +11,7 @@ interface Props {
 
 function getTimeString(pairNumber: number): string {
     const slot = TIME_SLOTS.find((t) => t.id === pairNumber);
-    return slot ? slot.time.split(" - ")[0] : "TBA";
+    return slot?.time.split(" - ")[0] ?? "TBA";
 }
 
 export function LessonCard({ lesson, onClick }: Props) {

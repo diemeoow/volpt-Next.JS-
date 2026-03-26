@@ -18,7 +18,9 @@ export function useWeekDates(offset: number) {
     const formatDate = (date: Date) =>
         date.toLocaleDateString("ru-RU", { month: "short", day: "numeric" });
 
-    const weekRange = `${formatDate(dates[0])} - ${formatDate(dates[dates.length - 1])}`;
+    const startDate = dates[0] ?? monday;
+    const endDate = dates[dates.length - 1] ?? startDate;
+    const weekRange = `${formatDate(startDate)} - ${formatDate(endDate)}`;
 
     return { dates, isToday, formatDate, weekRange };
 }
