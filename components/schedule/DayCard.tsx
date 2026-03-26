@@ -2,7 +2,7 @@
 
 import GlassCard from "@/components/GlassCard";
 import { LessonCard } from "./LessonCard";
-import type { DayTemplate } from "@/types";
+import type { DayTemplate } from "@/types/types";
 
 interface Props {
     dayTemplate: DayTemplate;

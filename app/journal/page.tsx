@@ -5,9 +5,14 @@ import { useState, useCallback, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import GlassCard from "@/components/GlassCard";
 import { MOCK_STUDENTS, MOCK_GROUPS, ALL_SUBJECTS } from "@/constants";
-import { JournalMode } from "@/types";
+import { JournalMode } from "@/types/types";
 import { JOURNAL_DAYS, TODAY_INDEX } from "@/hooks/useJournalDays";
-import { GradesState, AttendanceState, nextGrade, nextStatus } from "@/types";
+import {
+    GradesState,
+    AttendanceState,
+    nextGrade,
+    nextStatus,
+} from "@/types/journal";
 import { JournalFilters } from "@/components/journal/JournalFilters";
 import { ModeToggle } from "@/components/journal/ModeToggle";
 import { JournalTable } from "@/components/journal/JournalTable";

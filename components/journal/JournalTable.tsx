@@ -1,10 +1,10 @@
 // components/journal/JournalTable.tsx
 "use client";
 
-import { JournalMode } from "@/types";
+import { JournalMode } from "@/types/types";
 import { JournalDay, todayStr } from "@/hooks/useJournalDays";
 import { JournalCell } from "./JournalCell";
-import { GradesState, AttendanceState } from "@/types";
+import { GradesState, AttendanceState } from "@/types/journal";
 
 interface Student {
     id: string;

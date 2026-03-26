@@ -2,7 +2,7 @@
 
 import { Clock, MapPin } from "lucide-react";
 import { TIME_SLOTS } from "@/constants";
-import type { Lesson } from "@/types";
+import type { Lesson } from "@/types/types";
 
 interface Props {
     lesson: Lesson;

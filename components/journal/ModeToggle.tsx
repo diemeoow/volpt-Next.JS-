@@ -3,7 +3,7 @@
 
 import { GraduationCap, Users } from "lucide-react";
 import GlassCard from "@/components/GlassCard";
-import { JournalMode } from "@/types";
+import { JournalMode } from "@/types/types";
 
 interface Props {
     mode: JournalMode;

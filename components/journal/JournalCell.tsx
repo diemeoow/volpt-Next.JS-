@@ -1,8 +1,13 @@
 // components/journal/JournalCell.tsx
 "use client";
 
-import { JournalMode } from "@/types";
-import { Grade, AttendanceStatus, gradeStyle, statusStyle } from "@/types";
+import { JournalMode } from "@/types/types";
+import {
+    Grade,
+    AttendanceStatus,
+    gradeStyle,
+    statusStyle,
+} from "@/types/journal";
 
 interface Props {
     mode: JournalMode;

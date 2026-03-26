@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import GlassCard from "@/components/GlassCard";
 import { MOCK_GROUPS } from "@/constants";
 import { ChevronDown, Users, Book, ArrowDownAZ, SortAsc } from "lucide-react";
-import { SortOption } from "@/types";
+import { SortOption } from "@/types/types";
 
 export default function GroupsPage() {
     const [expandedId, setExpandedId] = useState<string | null>(null);
@@ -40,7 +40,7 @@ export default function GroupsPage() {
 
                 <button
                     onClick={toggleSort}
-                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 hover:bg-secondary/10 border hover:border-accent/55 hover:text-accent text-text text-body-sm font-medium transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 hover:bg-primary/10 border border-primary/5 hover:border-accent/55 hover:text-accent text-text text-body-sm font-medium transition-colors"
                 >
                     {sortBy === "NAME" ? (
                         <ArrowDownAZ className="w-4 h-4" />

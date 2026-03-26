@@ -1,4 +1,4 @@
-import { GroupSummary, Student } from "./types";
+import { GroupSummary, Student } from "./types/types";
 
 // Time slots definition
 export const TIME_SLOTS = [
