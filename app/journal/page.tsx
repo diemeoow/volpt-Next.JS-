@@ -1,7 +1,7 @@
 // app/journal/page.tsx
 "use client";
 
-import { useState, useCallback, Suspense } from "react";
+import { useState, useCallback, Suspense, useMemo } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import GlassCard from "@/components/GlassCard";
 import { MOCK_STUDENTS, MOCK_GROUPS, ALL_SUBJECTS } from "@/constants";
@@ -39,18 +39,19 @@ function JournalContent() {
 
     const totalPages = Math.ceil(JOURNAL_DAYS.length / ITEMS_PER_PAGE);
     const startDayIndex = page * ITEMS_PER_PAGE;
-    const currentDays = JOURNAL_DAYS.slice(
-        startDayIndex,
-        startDayIndex + ITEMS_PER_PAGE,
+    const currentDays = useMemo(
+        () =>
+            JOURNAL_DAYS.slice(startDayIndex, startDayIndex + ITEMS_PER_PAGE),
+        [startDayIndex],
     );
 
-    const updateFilters = (group: string, subject: string) => {
+    const updateFilters = useCallback((group: string, subject: string) => {
         setSelectedGroup(group);
         setSelectedSubject(subject);
         router.replace(
             `/journal?${new URLSearchParams({ group, subject }).toString()}`,
         );
-    };
+    }, [router]);
 
     const handleGradeClick = useCallback(
         (studentId: string, dayIdx: number) => {

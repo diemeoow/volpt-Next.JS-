@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { MOCK_GROUPS } from "@/constants";
 import { SortOption } from "@/types/types";
 import { SortButton } from "@/components/groups/SortButton";
@@ -9,11 +9,19 @@ import { GroupCard } from "@/components/groups/GroupCard";
 export default function GroupsPage() {
     const [sortBy, setSortBy] = useState<SortOption>("NAME");
 
-    const sortedGroups = [...MOCK_GROUPS].sort((a, b) =>
-        sortBy === "NAME"
-            ? a.name.localeCompare(b.name)
-            : b.subjects.length - a.subjects.length,
+    const sortedGroups = useMemo(
+        () =>
+            [...MOCK_GROUPS].sort((a, b) =>
+                sortBy === "NAME"
+                    ? a.name.localeCompare(b.name)
+                    : b.subjects.length - a.subjects.length,
+            ),
+        [sortBy],
     );
+
+    const handleSortToggle = useCallback(() => {
+        setSortBy((p) => (p === "NAME" ? "SUBJECTS_COUNT" : "NAME"));
+    }, []);
 
     return (
         <div className="p-4 md:p-6 mx-auto w-full mb-24">
@@ -28,11 +36,7 @@ export default function GroupsPage() {
                 </div>
                 <SortButton
                     sortBy={sortBy}
-                    onToggle={() =>
-                        setSortBy((p) =>
-                            p === "NAME" ? "SUBJECTS_COUNT" : "NAME",
-                        )
-                    }
+                    onToggle={handleSortToggle}
                 />
             </div>
 

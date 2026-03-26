@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import { MOCK_SCHEDULE_TEMPLATE } from "@/constants";
 import { useWeekDates } from "@/hooks/useWeekDates";
@@ -12,10 +12,10 @@ export default function SchedulePage() {
     const router = useRouter();
     const { dates, isToday, formatDate, weekRange } = useWeekDates(weekOffset);
 
-    const handleLessonSelect = (subject: string, group: string) => {
+    const handleLessonSelect = useCallback((subject: string, group: string) => {
         const params = new URLSearchParams({ subject, group });
         router.push(`/journal?${params.toString()}`);
-    };
+    }, [router]);
 
     return (
         <div className="p-4 md:p-6 w-full mb-24">
