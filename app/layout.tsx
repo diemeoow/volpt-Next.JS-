@@ -1,7 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
 import "./globals.css";
-import Background from "@/components/Background";
 import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {

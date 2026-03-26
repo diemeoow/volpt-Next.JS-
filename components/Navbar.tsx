@@ -1,25 +1,24 @@
 "use client";
 
-import React from "react";
+import React, { useCallback } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Calendar, Users, LogOut, BookOpen } from "lucide-react";
 
+const navItems = [
+    { href: "/schedule", icon: Calendar, label: "Расписание" },
+    { href: "/journal", icon: BookOpen, label: "Журнал" },
+    { href: "/groups", icon: Users, label: "Группы" },
+];
+
 const Navbar: React.FC = () => {
     const pathname = usePathname();
     const router = useRouter();
+    const handleLogout = useCallback(() => {
+        router.push("/");
+    }, [router]);
 
     if (pathname === "/" || pathname === "/login") return null;
-
-    const navItems = [
-        { href: "/schedule", icon: Calendar, label: "Расписание" },
-        { href: "/journal", icon: BookOpen, label: "Журнал" },
-        { href: "/groups", icon: Users, label: "Группы" },
-    ];
-
-    const handleLogout = () => {
-        router.push("/");
-    };
 
     return (
         <div className="fixed bottom-7 left-1/2 -translate-x-1/2 z-50">

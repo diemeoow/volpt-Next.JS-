@@ -1,19 +1,28 @@
 "use client";
 
-import { useState } from "react";
-import { MOCK_GROUPS } from "@/constants";
+import { useCallback, useMemo, useState } from "react";
 import { SortOption } from "@/types/types";
 import { SortButton } from "@/components/groups/SortButton";
 import { GroupCard } from "@/components/groups/GroupCard";
+import { getGroups } from "@/lib/services/educationData";
+import { PageState } from "@/components/shared/PageState";
 
 export default function GroupsPage() {
     const [sortBy, setSortBy] = useState<SortOption>("NAME");
 
-    const sortedGroups = [...MOCK_GROUPS].sort((a, b) =>
-        sortBy === "NAME"
-            ? a.name.localeCompare(b.name)
-            : b.subjects.length - a.subjects.length,
+    const sortedGroups = useMemo(
+        () =>
+            [...getGroups()].sort((a, b) =>
+                sortBy === "NAME"
+                    ? a.name.localeCompare(b.name)
+                    : b.subjects.length - a.subjects.length,
+            ),
+        [sortBy],
     );
+
+    const handleSortToggle = useCallback(() => {
+        setSortBy((p) => (p === "NAME" ? "SUBJECTS_COUNT" : "NAME"));
+    }, []);
 
     return (
         <div className="p-4 md:p-6 mx-auto w-full mb-24">
@@ -28,18 +37,21 @@ export default function GroupsPage() {
                 </div>
                 <SortButton
                     sortBy={sortBy}
-                    onToggle={() =>
-                        setSortBy((p) =>
-                            p === "NAME" ? "SUBJECTS_COUNT" : "NAME",
-                        )
-                    }
+                    onToggle={handleSortToggle}
                 />
             </div>
 
             <div className="space-y-5">
-                {sortedGroups.map((group) => (
-                    <GroupCard key={group.id} group={group} />
-                ))}
+                {sortedGroups.length === 0 ? (
+                    <PageState
+                        title="Группы не найдены"
+                        description="Сейчас список групп пуст. Проверьте источник данных или параметры фильтрации."
+                    />
+                ) : (
+                    sortedGroups.map((group) => (
+                        <GroupCard key={group.id} group={group} />
+                    ))
+                )}
             </div>
         </div>
     );

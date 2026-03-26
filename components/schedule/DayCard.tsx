@@ -1,5 +1,6 @@
 "use client";
 
+import { memo, useMemo } from "react";
 import GlassCard from "@/components/GlassCard";
 import { LessonCard } from "./LessonCard";
 import type { DayTemplate } from "@/types/types";
@@ -12,15 +13,19 @@ interface Props {
     onLessonSelect: (subject: string, group: string) => void;
 }
 
-export function DayCard({
+function DayCardComponent({
     dayTemplate,
     date,
     isActive,
     formatDate,
     onLessonSelect,
 }: Props) {
-    const sorted = [...dayTemplate.lessons].sort(
-        (a, b) => a.pairNumber - b.pairNumber,
+    const sorted = useMemo(
+        () =>
+            [...dayTemplate.lessons].sort(
+                (a, b) => a.pairNumber - b.pairNumber,
+            ),
+        [dayTemplate.lessons],
     );
 
     return (
@@ -65,3 +70,5 @@ export function DayCard({
         </GlassCard>
     );
 }
+
+export const DayCard = memo(DayCardComponent);
