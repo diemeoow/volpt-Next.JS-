@@ -1,21 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { MOCK_SCHEDULE_TEMPLATE } from "@/constants";
 import { useWeekDates } from "@/hooks/useWeekDates";
 import { WeekNavigator } from "@/components/schedule/WeekNavigator";
 import { DayCard } from "@/components/schedule/DayCard";
+import { buildJournalHref } from "@/lib/journalFilters";
+import { loadScheduleTemplate } from "@/lib/services/educationData";
+import { PageState } from "@/components/shared/PageState";
 
 export default function SchedulePage() {
     const [weekOffset, setWeekOffset] = useState(0);
     const router = useRouter();
     const { dates, isToday, formatDate, weekRange } = useWeekDates(weekOffset);
+    const scheduleResult = useMemo(() => loadScheduleTemplate(), []);
+    const scheduleTemplate = scheduleResult.data ?? [];
 
-    const handleLessonSelect = (subject: string, group: string) => {
-        const params = new URLSearchParams({ subject, group });
-        router.push(`/journal?${params.toString()}`);
-    };
+    const handleLessonSelect = useCallback((subject: string, group: string) => {
+        router.push(buildJournalHref({ group, subject }));
+    }, [router]);
 
     return (
         <div className="p-4 md:p-6 w-full mb-24">
@@ -35,18 +38,33 @@ export default function SchedulePage() {
                 />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {MOCK_SCHEDULE_TEMPLATE.map((dayTemplate, index) => (
-                    <DayCard
-                        key={dayTemplate.dayName}
-                        dayTemplate={dayTemplate}
-                        date={dates[index]}
-                        isActive={isToday(dates[index])}
-                        formatDate={formatDate}
-                        onLessonSelect={handleLessonSelect}
-                    />
-                ))}
-            </div>
+            {scheduleResult.error ? (
+                <PageState
+                    title="Расписание недоступно"
+                    description={scheduleResult.error.message}
+                    variant="error"
+                />
+            ) : scheduleTemplate.length === 0 ? (
+                <PageState
+                    title="Расписание пустое"
+                    description="Для выбранного периода нет занятий."
+                />
+            ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {scheduleTemplate.map((dayTemplate, index) => (
+                        dates[index] ? (
+                            <DayCard
+                                key={dayTemplate.dayName}
+                                dayTemplate={dayTemplate}
+                                date={dates[index]}
+                                isActive={isToday(dates[index])}
+                                formatDate={formatDate}
+                                onLessonSelect={handleLessonSelect}
+                            />
+                        ) : null
+                    ))}
+                </div>
+            )}
         </div>
     );
 }

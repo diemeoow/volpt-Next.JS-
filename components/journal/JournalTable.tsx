@@ -1,10 +1,16 @@
 // components/journal/JournalTable.tsx
 "use client";
 
+import { memo } from "react";
 import { JournalMode } from "@/types/types";
 import { JournalDay, todayStr } from "@/hooks/useJournalDays";
 import { JournalCell } from "./JournalCell";
-import { GradesState, AttendanceState } from "@/types/journal";
+import {
+    GradesState,
+    AttendanceState,
+    Grade,
+    AttendanceStatus,
+} from "@/types/journal";
 
 interface Student {
     id: string;
@@ -13,7 +19,7 @@ interface Student {
 
 interface Props {
     mode: JournalMode;
-    students: Student[];
+    students: ReadonlyArray<Student>;
     currentDays: JournalDay[];
     startDayIndex: number;
     grades: GradesState;
@@ -21,6 +27,55 @@ interface Props {
     onGradeClick: (studentId: string, dayIdx: number) => void;
     onAttendanceClick: (studentId: string, dayIdx: number) => void;
 }
+
+interface RowProps {
+    mode: JournalMode;
+    student: Student;
+    currentDays: JournalDay[];
+    startDayIndex: number;
+    studentGrades?: Record<number, Grade>;
+    studentAttendance?: Record<number, AttendanceStatus>;
+    onGradeClick: (studentId: string, dayIdx: number) => void;
+    onAttendanceClick: (studentId: string, dayIdx: number) => void;
+}
+
+const JournalRow = memo(function JournalRow({
+    mode,
+    student,
+    currentDays,
+    startDayIndex,
+    studentGrades,
+    studentAttendance,
+    onGradeClick,
+    onAttendanceClick,
+}: RowProps) {
+    return (
+        <tr className="hover:bg-background/40 transition-colors group">
+            <td className="py-2.5 px-3 text-body text-text sticky left-0 z-10 border-r border-b border-secondary/5 backdrop-blur-2xl bg-background/50 shadow-[4px_0_16px_rgba(0,0,0,0.08)] group-hover:bg-background/70 transition-colors">
+                <span className="block max-w-[110px] md:max-w-none truncate md:whitespace-nowrap">
+                    {student.name}
+                </span>
+            </td>
+            {currentDays.map((day, relIdx) => {
+                const actualIdx = startDayIndex + relIdx;
+                const isToday = day.label === todayStr;
+                return (
+                    <JournalCell
+                        key={actualIdx}
+                        mode={mode}
+                        studentId={student.id}
+                        dayIdx={actualIdx}
+                        grade={studentGrades?.[actualIdx] ?? null}
+                        status={studentAttendance?.[actualIdx] ?? null}
+                        isToday={isToday}
+                        onGradeClick={onGradeClick}
+                        onAttendanceClick={onAttendanceClick}
+                    />
+                );
+            })}
+        </tr>
+    );
+});
 
 export function JournalTable({
     mode,
@@ -78,45 +133,17 @@ export function JournalTable({
 
             <tbody className="divide-y divide-white/5">
                 {students.map((student) => (
-                    <tr
+                    <JournalRow
                         key={student.id}
-                        className="hover:bg-background/40 transition-colors group"
-                    >
-                        <td className="py-2.5 px-3 text-body text-text sticky left-0 z-10 border-r border-b border-secondary/5 backdrop-blur-2xl bg-background/50 shadow-[4px_0_16px_rgba(0,0,0,0.08)] group-hover:bg-background/70 transition-colors">
-                            <span className="block max-w-[110px] md:max-w-none truncate md:whitespace-nowrap">
-                                {student.name}
-                            </span>
-                        </td>
-                        {currentDays.map((day, relIdx) => {
-                            const actualIdx = startDayIndex + relIdx;
-                            const isToday = day.label === todayStr;
-                            return (
-                                <JournalCell
-                                    key={actualIdx}
-                                    mode={mode}
-                                    grade={
-                                        grades[student.id]?.[actualIdx] ?? null
-                                    }
-                                    status={
-                                        attendance[student.id]?.[actualIdx] ??
-                                        null
-                                    }
-                                    isToday={isToday}
-                                    onClick={() =>
-                                        mode === "GRADES"
-                                            ? onGradeClick(
-                                                  student.id,
-                                                  actualIdx,
-                                              )
-                                            : onAttendanceClick(
-                                                  student.id,
-                                                  actualIdx,
-                                              )
-                                    }
-                                />
-                            );
-                        })}
-                    </tr>
+                        mode={mode}
+                        student={student}
+                        currentDays={currentDays}
+                        startDayIndex={startDayIndex}
+                        studentGrades={grades[student.id]}
+                        studentAttendance={attendance[student.id]}
+                        onGradeClick={onGradeClick}
+                        onAttendanceClick={onAttendanceClick}
+                    />
                 ))}
             </tbody>
         </table>

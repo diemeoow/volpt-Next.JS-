@@ -20,6 +20,24 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Quality checks
+
+Run local quality gates before pushing:
+
+```bash
+npm run check
+```
+
+This command runs linting, TypeScript type checks, and production build validation.
+
+Performance audits are also automated in GitHub Actions via Lighthouse for:
+- `/`
+- `/journal`
+- `/groups`
+- `/schedule`
+
+Release readiness checklist is available in `RELEASE_CHECKLIST.md`.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

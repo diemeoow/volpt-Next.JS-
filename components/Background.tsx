@@ -57,14 +57,26 @@ const fragmentShaderSource = `
     }
   `;
 const Background: React.FC = () => {
+    type UniformLocations = {
+        iResolution: WebGLUniformLocation | null;
+        iTime: WebGLUniformLocation | null;
+        uSpeed: WebGLUniformLocation | null;
+        uDensity: WebGLUniformLocation | null;
+        uPointSize: WebGLUniformLocation | null;
+    };
+
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const animationFrameRef = useRef<number>(0);
     const startTimeRef = useRef<number>(Date.now());
     const glRef = useRef<WebGLRenderingContext | null>(null);
     const programRef = useRef<WebGLProgram | null>(null);
-    const uniformLocationsRef = useRef<
-        Record<string, WebGLUniformLocation | null>
-    >({});
+    const uniformLocationsRef = useRef<UniformLocations>({
+        iResolution: null,
+        iTime: null,
+        uSpeed: null,
+        uDensity: null,
+        uPointSize: null,
+    });
 
     // Config defaults adapted from user's specifications
     const speed = 4;
